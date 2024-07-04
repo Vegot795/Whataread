@@ -4,7 +4,6 @@ import json
 from customtkinter import CTkToplevel
 
 
-
 class App(ctk.CTk):
     def __init__(self, books_instance):
         super().__init__()
@@ -17,15 +16,15 @@ class App(ctk.CTk):
         current_books = my_books.get_books()
 
         self.title_label = ctk.CTkLabel(self, text="Whataread!", font=("default", 40))
-        self.title_label.pack(fill='both', expand = False, pady=5, padx=5)
+        self.title_label.grid(column=0, row=0, sticky="ew", columnspan=2)
         self.search_entry = ctk.CTkEntry(self)
-        self.search_entry.pack(fill='both', expand = False, pady=5, padx=5)
+        self.search_entry.grid(column=0, row=1, sticky="ew", columnspan=2)
 
         self.book_list_frame = ctk.CTkFrame(self)
-        self.book_list_frame.pack(fill='both', expand = True, pady=5, padx=5)
+        self.book_list_frame.grid(column=0, row=2, columnspan=2)
 
         self.button = ctk.CTkButton(self, text='Dodaj książkę', command=self.open_add_book)
-        self.button.pack(fill='both', expand = False, pady=5, padx=5)
+        self.button.grid(column=0, row=3, columnspan=2)
 
         self.add_book = None
         self.my_books = Book()
