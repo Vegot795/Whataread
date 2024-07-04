@@ -11,13 +11,15 @@ class App(ctk.CTk):
         self.grid_columnconfigure(0, weight=1)
         self.grid_columnconfigure(2, weight=1)
 
-class ListFrame(ctk.CTkFrame):
-    def __init__(self, app, book_instance):
-        super().__init__(app)
-        self.grid(row=1, column=1, sticky='nsew')
-
         self.title_label = ctk.CTkLabel(self, text="Whataread!", font=("default", 40))
-        self.search_entry = ctk.CTkEntry(self, rowspan=2)
+        self.title_label.pack(fill='both', expand = False, pady=5, padx=5)
+        self.search_entry = ctk.CTkEntry(self)
+        self.search_entry.pack(fill='both', expand = False, pady=5, padx=5)
+
+        list_frame = ctk.CTkFrame(self)
+        list_frame.pack(fill='both', expand = True, pady=5, padx=5)
+
+
 
 
 
