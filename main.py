@@ -1,6 +1,7 @@
 import os
 import customtkinter as ctk
 import json
+from customtkinter import CTkToplevel
 
 class App(ctk.CTk):
     def __init__(self):
@@ -16,8 +17,33 @@ class App(ctk.CTk):
         self.search_entry = ctk.CTkEntry(self)
         self.search_entry.pack(fill='both', expand = False, pady=5, padx=5)
 
-        list_frame = ctk.CTkFrame(self)
-        list_frame.pack(fill='both', expand = True, pady=5, padx=5)
+        book_list_frame = ctk.CTkFrame(self)
+        book_list_frame.pack(fill='both', expand = True, pady=5, padx=5)
+
+        self.button = ctk.CTkButton(self, text='Dodaj książkę', command=self.open_add_book)
+        self.button.pack(fill='both', expand = False, pady=5, padx=5)
+
+        self.add_book = None
+        self.my_books = Book()
+
+    def open_add_book(self):
+        if self.add_book is not None and self.add_book.winfo_exists():
+            self.add_book.destroy()
+
+        self.add_book = AddBook(self.my_books)
+        self.add_book.mainloop()
+
+    def update_book_list(self):
+        for widget in self.winfo_children():
+            widget.destroy()
+
+        current_books = self.my_books.get_books()
+
+        for index, books in enumerate(current_books):
+            book_list_frame = ctk.CTkFrame(self)
+            book_list_frame.pack(fill='both', expand = True, pady=5, padx=5)
+
+
 
 
 
@@ -28,7 +54,7 @@ class Book():
     def __init__(self):
         self.books = []
         if not os.path.exists('saves/books.json'):
-            self.tasks.append({
+            self.books.append({
                 'title': 'title',
                 'author': 'author',
                 'publisher': 'publisher'
@@ -65,9 +91,41 @@ class Book():
         else:
             self.books = []
 
-        self.title = title
-        self.author = author
-        self.publisher = publisher
+class AddBook(CTkToplevel):
+    def __init__(self, book_manager):
+        super().__init__()
+        self.book_manager = book_manager
+        self.geometry("400x300")
+        self.title("Dodaj książkę")
+
+        title_label = ctk.CTkLabel(self, text="Tytuł:")
+        title_label.pack(fill='both', expand = False, pady=5, padx=5)
+        self.title_entry = ctk.CTkEntry(self)
+        self.title_entry.pack(fill='both', expand = False, pady=5, padx=5)
+
+        author_label = ctk.CTkLabel(self, text="Autor:")
+        author_label.pack(fill='both', expand = False, pady=5, padx=5)
+        self.author_entry = ctk.CTkEntry(self)
+        self.author_entry.pack(fill='both', expand =False)
+
+        publisher_label = ctk.CTkLabel(self, text="Wydawnictwo:")
+        publisher_label.pack(fill='both', expand = False, pady=5, padx=5)
+        self.publisher_entry = ctk.CTkEntry(self)
+        self.publisher_entry.pack(fill='both', expand = False)
+
+        self.add_book_button = ctk.CTkButton(self, text="Dodaj książkę", command=self.add_new_book)
+        self.add_book_button.pack(fill='both', expand = False)
+
+    def add_new_book(self):
+        book_title = self.title_entry.get()
+        book_author = self.author_entry.get()
+        book_publisher = self.publisher_entry.get()
+
+        self.book_manager.add_books(book_title, book_author, book_publisher)
+        self.book_manager.save_books()
+        self.destroy()
+
+
 
 
 app = App()
