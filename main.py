@@ -3,6 +3,11 @@ import customtkinter as ctk
 import json
 from customtkinter import CTkToplevel
 
+
+def update_book_list():
+    book_list_frame.update_book_list()
+
+
 class App(ctk.CTk):
     def __init__(self, books_instance):
         super().__init__()
@@ -11,7 +16,7 @@ class App(ctk.CTk):
         self.title("Whataread")
         self.grid_columnconfigure(0, weight=1)
         self.grid_columnconfigure(2, weight=1)
-        my_books = books_instance
+        self.my_books = books_instance
         current_books = my_books.get_books()
 
         self.title_label = ctk.CTkLabel(self, text="Whataread!", font=("default", 40))
@@ -21,10 +26,6 @@ class App(ctk.CTk):
 
         self.book_list_frame = ctk.CTkFrame(self)
         self.book_list_frame.pack(fill='both', expand = True, pady=5, padx=5)
-
-        for index, books in enumerate(current_books):
-            book_list_frame = ctk.CTkFrame(self)
-            book_list_frame.grid(row=index, column=1, sticky="nsew")
 
         self.button = ctk.CTkButton(self, text='Dodaj książkę', command=self.open_add_book)
         self.button.pack(fill='both', expand = False, pady=5, padx=5)
@@ -42,6 +43,7 @@ class App(ctk.CTk):
     def update_book_list(self):
         current_books = self.my_books.get_books()
         for widget in self.book_list_frame.winfo_children():
+
             widget.destroy()
 
         for index, book in enumerate(current_books):
@@ -50,12 +52,22 @@ class App(ctk.CTk):
             book_title_label.pack(fill='both', expand = False)
 
 
+class BookListFrame(ctk.CTkFrame):
+    def __init__(self, root, book_instance):
+        super().__init__(root)
+        self.configure(fg_color='red')
+        self.my_books = book_instance
 
+    def update_book_list(self):
+        current_books = self.my_books.get_books()
+        for widget in self.winfo_children():
+            widget.destroy()
 
-
-
-
-
+        for index, book in enumerate(current_books):
+            book_frame = ctk.CTkFrame(self)
+            book_frame.grid(row=index, column=1, sticky='nswe')
+            book_title_label = ctk.CTkLabel(book_frame, text=f"Title: {book['title']}")
+            book_title_label.pack(fill='both', expand=False)
 
 
 class Book:
@@ -84,7 +96,7 @@ class Book:
         try:
             with open('saves/books.json', 'w') as f:
                 f.write(json.dumps(self.books, indent=4))
-            print("books saved succesfully")
+            print("books saved successfully")
         except IOError as e:
             print(f"Error saving books: {e}")
 
@@ -94,16 +106,16 @@ class Book:
                 try:
                     self.books = json.load(file)
                     print("books loaded successfully")
-                except json.JSONecodeError as e:
-                    print (f"book load failed: {e}")
+                except json.JSONDecodeError as e:
+                    print(f"book load failed: {e}")
         else:
             self.books = []
 
 
 class AddBook(CTkToplevel):
-    def __init__(self, book_manager):
+    def __init__(self, book_instance):
         super().__init__()
-        self.book_manager = book_manager
+        self.my_books = book_instance
         self.geometry("400x300")
         self.title("Dodaj książkę")
 
@@ -130,13 +142,22 @@ class AddBook(CTkToplevel):
         book_author = self.author_entry.get()
         book_publisher = self.publisher_entry.get()
 
-        self.book_manager.add_books(book_title, book_author, book_publisher)
-        self.book_manager.save_books()
+        my_books.add_books(book_title, book_author, book_publisher)
+        self.my_books.save_books()
+        book_list_frame.update_book_list()
         self.destroy()
+
+    def save_current_book(self):
+        self.add_new_book()
+        self.my_books.save_books()
+        self.my_books.load_books()
+        book_list_frame.update_book_list()
 
 
 
 my_books = Book()
 app = App(my_books)
+book_list_frame = BookListFrame(app, my_books)
+
 app.mainloop()
 
