@@ -4,9 +4,6 @@ import json
 from customtkinter import CTkToplevel
 
 
-def update_book_list():
-    book_list_frame.update_book_list()
-
 
 class App(ctk.CTk):
     def __init__(self, books_instance):
