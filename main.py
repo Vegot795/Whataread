@@ -4,21 +4,27 @@ import json
 from customtkinter import CTkToplevel
 
 class App(ctk.CTk):
-    def __init__(self):
+    def __init__(self, books_instance):
         super().__init__()
         self.configure(fg_color='green')
         self.geometry("600x800")
         self.title("Whataread")
         self.grid_columnconfigure(0, weight=1)
         self.grid_columnconfigure(2, weight=1)
+        my_books = books_instance
+        current_books = my_books.get_books()
 
         self.title_label = ctk.CTkLabel(self, text="Whataread!", font=("default", 40))
         self.title_label.pack(fill='both', expand = False, pady=5, padx=5)
         self.search_entry = ctk.CTkEntry(self)
         self.search_entry.pack(fill='both', expand = False, pady=5, padx=5)
 
-        book_list_frame = ctk.CTkFrame(self)
-        book_list_frame.pack(fill='both', expand = True, pady=5, padx=5)
+        self.book_list_frame = ctk.CTkFrame(self)
+        self.book_list_frame.pack(fill='both', expand = True, pady=5, padx=5)
+
+        for index, books in enumerate(current_books):
+            book_list_frame = ctk.CTkFrame(self)
+            book_list_frame.grid(row=index, column=1, sticky="nsew")
 
         self.button = ctk.CTkButton(self, text='Dodaj książkę', command=self.open_add_book)
         self.button.pack(fill='both', expand = False, pady=5, padx=5)
@@ -34,15 +40,14 @@ class App(ctk.CTk):
         self.add_book.mainloop()
 
     def update_book_list(self):
-        for widget in self.winfo_children():
+        current_books = self.my_books.get_books()
+        for widget in self.book_list_frame.winfo_children():
             widget.destroy()
 
-        current_books = self.my_books.get_books()
-
-        for index, books in enumerate(current_books):
-            book_list_frame = ctk.CTkFrame(self)
-            book_list_frame.pack(fill='both', expand = True, pady=5, padx=5)
-
+        for index, book in enumerate(current_books):
+            book_frame = ctk.CTkFrame(self.book_list_frame)
+            book_title_label = ctk.CTkLabel(book_frame, text=f"Title: {book['title']}")
+            book_title_label.pack(fill='both', expand = False)
 
 
 
@@ -50,7 +55,10 @@ class App(ctk.CTk):
 
 
 
-class Book():
+
+
+
+class Book:
     def __init__(self):
         self.books = []
         if not os.path.exists('saves/books.json'):
@@ -91,6 +99,7 @@ class Book():
         else:
             self.books = []
 
+
 class AddBook(CTkToplevel):
     def __init__(self, book_manager):
         super().__init__()
@@ -127,7 +136,7 @@ class AddBook(CTkToplevel):
 
 
 
-
-app = App()
+my_books = Book()
+app = App(my_books)
 app.mainloop()
 
