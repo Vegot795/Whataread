@@ -1,4 +1,5 @@
 import customtkinter as ctk
+import BookMod
 from AddBookMod import AddBook
 from EditBookMod import EditBook
 
@@ -41,6 +42,16 @@ class App(ctk.CTk):
         edit_window.wait_window()
         self.update_book_list()
 
+    def move_up_book(self, index):
+        if index > 0:
+            self.my_books.move_book_up(index)
+            self.update_book_list()
+
+    def move_down_book(self, index):
+        if index < len(self.my_books.get_books()) - 1:
+            self.my_books.move_book_down(index)
+            self.update_book_list()
+
     def update_book_list(self):
         for widget in self.book_list_frame.winfo_children():
             widget.destroy()
@@ -66,11 +77,11 @@ class App(ctk.CTk):
             book_publisher_label = ctk.CTkLabel(info_frame, text=f"Publisher: {book['publisher']}")
             book_publisher_label.pack(fill='x', expand=False)
 
-            move_up_button = ctk.CTkButton(button_frame, width=5, height=5, text="UP")
+            move_up_button = ctk.CTkButton(button_frame, width=5, height=5, text="UP", command=lambda idx=index: self.move_up_book(idx))
             move_up_button.grid(row=0, padx=5, pady=5)
 
-            edit_button = ctk.CTkButton(button_frame, width=5, height=5, text="Edit", command=lambda idx=index: self.edit_book(idx) )
+            edit_button = ctk.CTkButton(button_frame, width=5, height=5, text="Edit", command=lambda idx=index: self.edit_book(idx))
             edit_button.grid(row=1, padx=5, pady=5)
 
-            move_down_button = ctk.CTkButton(button_frame, width=5, height=5, text="down")
+            move_down_button = ctk.CTkButton(button_frame, width=5, height=5, text="down", command=lambda idx=index: self.move_down_book(idx))
             move_down_button.grid(row=2, padx=5, pady=5)

@@ -58,3 +58,12 @@ class Book:
             self.books[index]['publisher'] = updated_publisher
         else:
             print(f"Invalid index {index} for editing book")
+
+    def move_book_up(self, index):
+        if index > 0:
+            self.books[index], self.books[index - 1] = self.books[index - 1], self.books[index]
+
+
+    def move_book_down(self, index):
+        if 0 <= index < len(self.books) - 1:
+            self.books[index], self.books[index + 1] = self.books[index + 1], self.books[index]
