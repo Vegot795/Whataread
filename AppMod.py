@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from AddBookMod import AddBook
+from EditBookMod import EditBook
 
 class App(ctk.CTk):
     def __init__(self, books_instance):
@@ -35,10 +36,16 @@ class App(ctk.CTk):
         self.add_book.wait_window()
         self.update_book_list()
 
+    def edit_book(self, index):
+        edit_window = EditBook(self.my_books, index)
+        edit_window.wait_window()
+        self.update_book_list()
+
     def update_book_list(self):
-        current_books = self.my_books.get_books()
         for widget in self.book_list_frame.winfo_children():
             widget.destroy()
+
+        current_books = self.my_books.get_books()
 
         for index, book in enumerate(current_books):
             book_frame = ctk.CTkFrame(self.book_list_frame)
@@ -62,7 +69,7 @@ class App(ctk.CTk):
             move_up_button = ctk.CTkButton(button_frame, width=5, height=5, text="UP")
             move_up_button.grid(row=0, padx=5, pady=5)
 
-            edit_button = ctk.CTkButton(button_frame, width=5, height=5, text="Edit")
+            edit_button = ctk.CTkButton(button_frame, width=5, height=5, text="Edit", command=lambda idx=index: self.edit_book(idx) )
             edit_button.grid(row=1, padx=5, pady=5)
 
             move_down_button = ctk.CTkButton(button_frame, width=5, height=5, text="down")

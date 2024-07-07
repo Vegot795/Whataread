@@ -44,3 +44,17 @@ class Book:
                 print(f"Failed to load books: {e}")
         else:
             self.books = []
+
+    def get_book_by_index(self, index):
+        if 0 <= index < len(self.books):
+            return self.books[index]
+        else:
+            return None
+
+    def edit_book(self, index, updated_title, updated_author, updated_publisher):
+        if 0 <= index < len(self.books):
+            self.books[index]['title'] = updated_title
+            self.books[index]['author'] = updated_author
+            self.books[index]['publisher'] = updated_publisher
+        else:
+            print(f"Invalid index {index} for editing book")
