@@ -1,22 +1,7 @@
 [
     {
-        "title": "Tak",
-        "author": "Rak",
-        "publisher": "Bak"
-    },
-    {
-        "title": "Tak",
-        "author": "Rak",
-        "publisher": "Bak"
-    },
-    {
-        "title": "Tak",
-        "author": "Rakddd",
-        "publisher": "Bak"
-    },
-    {
-        "title": "Aurora",
-        "author": "J.Kristoff",
-        "publisher": "Insignis"
+        "title": "Sample Title",
+        "author": "Sample Author",
+        "publisher": "Sample Publisher"
     }
 ]

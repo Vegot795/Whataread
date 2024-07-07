@@ -23,7 +23,7 @@ def collect_code(modules, main_file, output_file):
 
 if __name__ == "__main__":
     # List of module names to collect code from
-    modules_to_collect = ['AppMod', 'AddBookMod', 'EditBookMod']  # Adjust as per your actual module names
+    modules_to_collect = ['AppMod', 'AddBookMod', 'EditBookMod', 'BookMod', 'SortingLogicMod', 'MoveButtonsMod']  # Adjust as per your actual module names
 
     # Main file (assuming it's named 'main.py')
     main_file = 'main'

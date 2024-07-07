@@ -1,12 +1,15 @@
 import json
 import os
+import uuid
 
 class Book:
     def __init__(self):
         self.books = []
         self.load_books()
+        self.id = uuid.uuid4
         if not self.books:
             self.books.append({
+                'id': str(uuid.uuid4()),
                 'title': 'Sample Title',
                 'author': 'Sample Author',
                 'publisher': 'Sample Publisher'
@@ -15,6 +18,7 @@ class Book:
 
     def add_books(self, title, author, publisher):
         new_book = {
+            'id': id,
             'title': title,
             'author': author,
             'publisher': publisher
@@ -67,3 +71,9 @@ class Book:
     def move_book_down(self, index):
         if 0 <= index < len(self.books) - 1:
             self.books[index], self.books[index + 1] = self.books[index + 1], self.books[index]
+
+    def delete_book(self, index):
+        if 0 <= index < len(self.books):
+            del self.books[index]
+        else:
+            print(f"Error: Index {index} is out of range")
