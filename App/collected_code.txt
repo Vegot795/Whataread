@@ -1,7 +1,7 @@
 # Code from module: AppMod
 import customtkinter as ctk
 import BookMod
-from AddBookMod import AddBook
+from App.AddBookMod import AddBook
 from EditBookMod import EditBook
 
 
@@ -19,8 +19,16 @@ class App(ctk.CTk):
         self.title_label = ctk.CTkLabel(self, text="Whataread!", font=("default", 40))
         self.title_label.pack(fill='both', expand=False, pady=5, padx=5)
 
-        self.search_entry = ctk.CTkEntry(self)
-        self.search_entry.pack(fill='both', expand=False, pady=5, padx=5)
+        search_bar = ctk.CTkFrame(self)
+        search_bar.pack(fill='both', expand=False, pady=5, padx=5)
+        search_bar.columnconfigure(0, weight=0)
+        search_bar.columnconfigure(1, weight=1)
+
+        search_label = ctk.CTkLabel(search_bar, text="Wyszukaj: ")
+        search_label.grid(column=0, row=0, sticky='e')
+
+        self.search_entry = ctk.CTkEntry(search_bar)
+        self.search_entry.grid(column=1, row=0, sticky='ew')
         self.search_entry.bind("<KeyRelease>", self.search_books)  # Bind key release event to search_books method
 
         self.book_list_frame = ctk.CTkFrame(self)
@@ -94,19 +102,19 @@ class App(ctk.CTk):
             book_publisher_label = ctk.CTkLabel(info_frame, text=f"Publisher: {book['publisher']}")
             book_publisher_label.pack(fill='x', expand=False)
 
-            move_up_button = ctk.CTkButton(button_frame, width=5, height=5, text="UP",
+            move_up_button = ctk.CTkButton(button_frame, width=5, height=5, text="↑", corner_radius=50,
                                            command=lambda idx=index: self.move_up_book(idx))
             move_up_button.grid(row=0, padx=5, pady=5)
 
-            edit_button = ctk.CTkButton(button_frame, width=5, height=5, text="Edit",
+            edit_button = ctk.CTkButton(button_frame, width=5, height=5, text="Edytuj", corner_radius=15,
                                         command=lambda idx=index: self.edit_book(idx))
             edit_button.grid(row=1, padx=5, pady=5)
 
-            delete_button = ctk.CTkButton(button_frame, width=5, height=5, text="Delete",
+            delete_button = ctk.CTkButton(button_frame, width=5, height=5, text="Usuń", corner_radius=15,
                                           command=lambda idx=index: self.delete_book(idx))
             delete_button.grid(row=2, padx=5, pady=5)
 
-            move_down_button = ctk.CTkButton(button_frame, width=5, height=5, text="down",
+            move_down_button = ctk.CTkButton(button_frame, width=5, height=5, text="↓", corner_radius=15,
                                              command=lambda idx=index: self.move_down_book(idx))
             move_down_button.grid(row=3, padx=5, pady=5)
 
@@ -196,6 +204,90 @@ class EditBook(CTkToplevel):
 
         self.book_manager.edit_book(self.index, update_title, update_author, update_publisher)
         self.destroy()
+
+
+# Code from module: BookMod
+import json
+import os
+
+class Book:
+    def __init__(self):
+        self.books = []
+        self.load_books()
+        if not self.books:
+            self.books.append({
+                'title': 'Sample Title',
+                'author': 'Sample Author',
+                'publisher': 'Sample Publisher'
+            })
+            self.save_books()
+
+    def add_books(self, title, author, publisher):
+        new_book = {
+            'title': title,
+            'author': author,
+            'publisher': publisher
+        }
+        self.books.append(new_book)
+        self.save_books()
+
+    def get_books(self):
+        return self.books
+
+    def save_books(self):
+        try:
+            os.makedirs('saves', exist_ok=True)
+            with open('saves/books.json', 'w') as f:
+                json.dump(self.books, f, indent=4)
+            print("Books saved successfully")
+        except IOError as e:
+            print(f"Error saving books: {e}")
+
+    def load_books(self):
+        if os.path.exists('saves/books.json'):
+            try:
+                with open('saves/books.json', 'r') as file:
+                    self.books = json.load(file)
+                print("Books loaded successfully")
+            except json.JSONDecodeError as e:
+                print(f"Failed to load books: {e}")
+        else:
+            self.books = []
+
+    def get_book_by_index(self, index):
+        if 0 <= index < len(self.books):
+            return self.books[index]
+        else:
+            return None
+
+    def edit_book(self, index, updated_title, updated_author, updated_publisher):
+        if 0 <= index < len(self.books):
+            self.books[index]['title'] = updated_title
+            self.books[index]['author'] = updated_author
+            self.books[index]['publisher'] = updated_publisher
+        else:
+            print(f"Invalid index {index} for editing book")
+
+    def move_book_up(self, index):
+        if index > 0:
+            self.books[index], self.books[index - 1] = self.books[index - 1], self.books[index]
+
+
+    def move_book_down(self, index):
+        if 0 <= index < len(self.books) - 1:
+            self.books[index], self.books[index + 1] = self.books[index + 1], self.books[index]
+
+    def delete_book(self, index):
+        if 0 <= index < len(self.books):
+            del self.books[index]
+        else:
+            print(f"Invalid index {index} for deleting book")
+
+# Code from module: MoveButtonsMod
+import customtkinter as ctk
+from BookMod import Book
+
+
 
 
 # Code from module: main

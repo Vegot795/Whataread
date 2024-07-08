@@ -1,6 +1,6 @@
 import customtkinter as ctk
 import BookMod
-from AddBookMod import AddBook
+from App.AddBookMod import AddBook
 from EditBookMod import EditBook
 
 
