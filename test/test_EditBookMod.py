@@ -18,7 +18,7 @@ class DummyBookManager:
         else:
             return None
 
-    def edit_book(self, index, title, author, publisher):
+    def edit_book_window(self, index, title, author, publisher):
         if 0 <= index < len(self.books):
             self.books[index]['title'] = title
             self.books[index]['author'] = author
