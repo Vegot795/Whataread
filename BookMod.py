@@ -1,15 +1,12 @@
 import json
 import os
-import uuid
 
 class Book:
     def __init__(self):
         self.books = []
         self.load_books()
-        self.id = uuid.uuid4
         if not self.books:
             self.books.append({
-                'id': str(uuid.uuid4()),
                 'title': 'Sample Title',
                 'author': 'Sample Author',
                 'publisher': 'Sample Publisher'
@@ -18,7 +15,6 @@ class Book:
 
     def add_books(self, title, author, publisher):
         new_book = {
-            'id': str(uuid.uuid4()),
             'title': title,
             'author': author,
             'publisher': publisher
@@ -43,9 +39,6 @@ class Book:
             try:
                 with open('saves/books.json', 'r') as file:
                     self.books = json.load(file)
-                    for book in self.books:
-                        if 'id' not in book:
-                            book['id'] = str(uuid.uuid4())
                 print("Books loaded successfully")
             except json.JSONDecodeError as e:
                 print(f"Failed to load books: {e}")
@@ -79,4 +72,4 @@ class Book:
         if 0 <= index < len(self.books):
             del self.books[index]
         else:
-            print(f"Error: Index {index} is out of range")
+            print(f"Invalid index {index} for deleting book")
