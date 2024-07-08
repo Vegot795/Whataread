@@ -3,6 +3,7 @@ import BookMod
 from AddBookMod import AddBook
 from EditBookMod import EditBook
 
+
 class App(ctk.CTk):
     def __init__(self, books_instance):
         super().__init__()
@@ -16,8 +17,10 @@ class App(ctk.CTk):
 
         self.title_label = ctk.CTkLabel(self, text="Whataread!", font=("default", 40))
         self.title_label.pack(fill='both', expand=False, pady=5, padx=5)
+
         self.search_entry = ctk.CTkEntry(self)
         self.search_entry.pack(fill='both', expand=False, pady=5, padx=5)
+        self.search_entry.bind("<KeyRelease>", self.search_books)  # Bind key release event to search_books method
 
         self.book_list_frame = ctk.CTkFrame(self)
         self.book_list_frame.pack(fill='both', expand=True, pady=5, padx=5)
@@ -57,12 +60,19 @@ class App(ctk.CTk):
         self.my_books.save_books()
         self.update_book_list()
 
+    def search_books(self, event=None):
+        query = self.search_entry.get().lower()
+        filtered_books = [book for book in self.my_books.get_books() if
+                          query in book['title'].lower() or
+                          query in book['author'].lower() or
+                          query in book['publisher'].lower()]
+        self.update_book_list(filtered_books)
 
-    def update_book_list(self):
+    def update_book_list(self, books=None):
         for widget in self.book_list_frame.winfo_children():
             widget.destroy()
 
-        current_books = self.my_books.get_books()
+        current_books = books if books is not None else self.my_books.get_books()
 
         for index, book in enumerate(current_books):
             book_frame = ctk.CTkFrame(self.book_list_frame)
@@ -83,14 +93,18 @@ class App(ctk.CTk):
             book_publisher_label = ctk.CTkLabel(info_frame, text=f"Publisher: {book['publisher']}")
             book_publisher_label.pack(fill='x', expand=False)
 
-            move_up_button = ctk.CTkButton(button_frame, width=5, height=5, text="UP", command=lambda idx=index: self.move_up_book(idx))
+            move_up_button = ctk.CTkButton(button_frame, width=5, height=5, text="UP",
+                                           command=lambda idx=index: self.move_up_book(idx))
             move_up_button.grid(row=0, padx=5, pady=5)
 
-            edit_button = ctk.CTkButton(button_frame, width=5, height=5, text="Edit", command=lambda idx=index: self.edit_book(idx))
+            edit_button = ctk.CTkButton(button_frame, width=5, height=5, text="Edit",
+                                        command=lambda idx=index: self.edit_book(idx))
             edit_button.grid(row=1, padx=5, pady=5)
 
-            delete_button = ctk.CTkButton(button_frame, width=5, height=5, text="Delete", command=lambda idx=index: self.delete_book(idx))
+            delete_button = ctk.CTkButton(button_frame, width=5, height=5, text="Delete",
+                                          command=lambda idx=index: self.delete_book(idx))
             delete_button.grid(row=2, padx=5, pady=5)
 
-            move_down_button = ctk.CTkButton(button_frame, width=5, height=5, text="down", command=lambda idx=index: self.move_down_book(idx))
+            move_down_button = ctk.CTkButton(button_frame, width=5, height=5, text="down",
+                                             command=lambda idx=index: self.move_down_book(idx))
             move_down_button.grid(row=3, padx=5, pady=5)
