@@ -33,14 +33,14 @@ class App(ctk.CTk):
         self.book_list_frame = ctk.CTkFrame(self)
         self.book_list_frame.pack(fill='both', expand=True, pady=5, padx=5)
 
-        self.button = ctk.CTkButton(self, text='Dodaj książkę', command=self.open_add_book)
+        self.button = ctk.CTkButton(self, text='Dodaj książkę', command=self.open_add_book_window)
         self.button.pack(fill='both', expand=False, pady=5, padx=5)
 
         self.add_book = None
 
         self.update_book_list()
 
-    def open_add_book(self):
+    def open_add_book_window(self):
         if self.add_book is not None and self.add_book.winfo_exists():
             self.add_book.destroy()
 
@@ -48,7 +48,7 @@ class App(ctk.CTk):
         self.add_book.wait_window()
         self.update_book_list()
 
-    def edit_book(self, index):
+    def edit_book_window(self, index):
         edit_window = EditBook(self.my_books, index)
         edit_window.wait_window()
         self.update_book_list()
@@ -106,7 +106,7 @@ class App(ctk.CTk):
             move_up_button.grid(row=0, padx=5, pady=5)
 
             edit_button = ctk.CTkButton(button_frame, width=5, height=5, text="Edytuj", corner_radius=15,
-                                        command=lambda idx=index: self.edit_book(idx))
+                                        command=lambda idx=index: self.edit_book_window(idx))
             edit_button.grid(row=1, padx=5, pady=5)
 
             delete_button = ctk.CTkButton(button_frame, width=5, height=5, text="Usuń", corner_radius=15,
@@ -116,3 +116,4 @@ class App(ctk.CTk):
             move_down_button = ctk.CTkButton(button_frame, width=5, height=5, text="↓", corner_radius=15,
                                              command=lambda idx=index: self.move_down_book(idx))
             move_down_button.grid(row=3, padx=5, pady=5)
+
