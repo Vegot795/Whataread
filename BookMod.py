@@ -67,3 +67,9 @@ class Book:
     def move_book_down(self, index):
         if 0 <= index < len(self.books) - 1:
             self.books[index], self.books[index + 1] = self.books[index + 1], self.books[index]
+
+    def delete_book(self, index):
+        if 0 <= index < len(self.books):
+            del self.books[index]
+        else:
+            print(f"Invalid index {index} for deleting book")

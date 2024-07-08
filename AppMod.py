@@ -52,6 +52,11 @@ class App(ctk.CTk):
             self.my_books.move_book_down(index)
             self.update_book_list()
 
+    def delete_book(self, index):
+        self.my_books.delete_book(index)
+        self.update_book_list()
+
+
     def update_book_list(self):
         for widget in self.book_list_frame.winfo_children():
             widget.destroy()
@@ -83,5 +88,8 @@ class App(ctk.CTk):
             edit_button = ctk.CTkButton(button_frame, width=5, height=5, text="Edit", command=lambda idx=index: self.edit_book(idx))
             edit_button.grid(row=1, padx=5, pady=5)
 
+            delete_button = ctk.CTkButton(button_frame, width=5, height=5, text="Delete", command=lambda idx=index: self.delete_book(idx))
+            delete_button.grid(row=2, padx=5, pady=5)
+
             move_down_button = ctk.CTkButton(button_frame, width=5, height=5, text="down", command=lambda idx=index: self.move_down_book(idx))
-            move_down_button.grid(row=2, padx=5, pady=5)
+            move_down_button.grid(row=3, padx=5, pady=5)
