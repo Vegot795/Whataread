@@ -54,6 +54,7 @@ class App(ctk.CTk):
 
     def delete_book(self, index):
         self.my_books.delete_book(index)
+        self.my_books.save_books()
         self.update_book_list()
 
 
