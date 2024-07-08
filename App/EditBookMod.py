@@ -41,5 +41,5 @@ class EditBook(CTkToplevel):
         update_author = self.author_entry.get()
         update_publisher = self.publisher_entry.get()
 
-        self.book_manager.edit_book(self.index, update_title, update_author, update_publisher)
+        self.book_manager.edit_book_window(self.index, update_title, update_author, update_publisher)
         self.destroy()
