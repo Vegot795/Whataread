@@ -18,7 +18,7 @@ class Book:
 
     def add_books(self, title, author, publisher):
         new_book = {
-            'id': id,
+            'id': str(uuid.uuid4()),
             'title': title,
             'author': author,
             'publisher': publisher
@@ -43,6 +43,9 @@ class Book:
             try:
                 with open('saves/books.json', 'r') as file:
                     self.books = json.load(file)
+                    for book in self.books:
+                        if 'id' not in book:
+                            book['id'] = str(uuid.uuid4())
                 print("Books loaded successfully")
             except json.JSONDecodeError as e:
                 print(f"Failed to load books: {e}")

@@ -1,7 +1,14 @@
 [
     {
-        "title": "Sample Title",
+        "title": "Sample Title tak",
         "author": "Sample Author",
-        "publisher": "Sample Publisher"
+        "publisher": "Sample Publisher",
+        "id": "b4e6c714-0b62-4a20-8f52-4865b95fafd5"
+    },
+    {
+        "id": "6e3ff9de-8017-4f0b-b76f-da53308fa57e",
+        "title": "",
+        "author": "",
+        "publisher": ""
     }
 ]
