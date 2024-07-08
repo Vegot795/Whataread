@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="69e95490-738e-47b8-8ad5-3085688bf939" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/AppMod.py" beforeDir="false" afterPath="$PROJECT_DIR$/App/AppMod.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReadMe.docx" beforeDir="false" afterPath="$PROJECT_DIR$/ReadMe.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/~$ReadMe.docx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,30 +36,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.Python tests for test_AppMod.test_move_up_book.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test_AddBookMod.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test_AppMod.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test_EditBookMod.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test_whataread.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python.AppMod.executor&quot;: &quot;Run&quot;,
-    &quot;Python.CodeCollector (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.CodeCollector.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;unittest&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/48694/Documents/GitHub/Whataread&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests for test_AppMod.test_move_up_book.executor": "Run",
+    "Python tests.Python tests in test_AddBookMod.py.executor": "Run",
+    "Python tests.Python tests in test_AppMod.py.executor": "Run",
+    "Python tests.Python tests in test_EditBookMod.py.executor": "Run",
+    "Python tests.Python tests in test_whataread.py.executor": "Run",
+    "Python.AppMod.executor": "Run",
+    "Python.CodeCollector (1).executor": "Run",
+    "Python.CodeCollector.executor": "Run",
+    "Python.main (1).executor": "Run",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "unittest",
+    "last_opened_file_path": "C:/Users/48694/Documents/GitHub/Whataread",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\48694\Documents\GitHub\Whataread\test" />
@@ -65,8 +69,8 @@
       <recent name="C:\Users\48694\Documents\GitHub\Whataread" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests in test_EditBookMod.py">
-    <configuration name="CodeCollector (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.main">
+    <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Whataread" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -80,7 +84,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/App/CodeCollector.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/App/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -179,10 +183,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python tests.Python tests in test_EditBookMod.py" />
+        <item itemvalue="Python.main (1)" />
         <item itemvalue="Python tests.Python tests in test_AddBookMod.py" />
         <item itemvalue="Python tests.Python tests in test_AppMod.py" />
         <item itemvalue="Python tests.Python tests for test.test_AppMod" />
-        <item itemvalue="Python.CodeCollector (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -207,7 +211,7 @@
       <workItem from="1720438038096" duration="24000" />
       <workItem from="1720438092471" duration="48000" />
       <workItem from="1720438141883" duration="19356000" />
-      <workItem from="1720462434713" duration="3762000" />
+      <workItem from="1720462434713" duration="4620000" />
     </task>
     <servers />
   </component>
@@ -249,10 +253,11 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Whataread$CodeCollector.coverage" NAME="CodeCollector Coverage Results" MODIFIED="1720433816714" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1720465066720" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/main_py$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1720467220591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/App" />
+    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1720467852082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Whataread$BookMod.coverage" NAME="BookMod Coverage Results" MODIFIED="1720433459457" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Whataread$main.coverage" NAME="main Coverage Results" MODIFIED="1720435268601" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/main_py$.coverage" NAME=" Coverage Results" MODIFIED="1720466982859" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/App" />
+    <SUITE FILE_PATH="coverage/main_py$.coverage" NAME=" Coverage Results" MODIFIED="1720467482114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Whataread$AddBookMod.coverage" NAME="AddBookMod Coverage Results" MODIFIED="1720369029451" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Whataread$AppMod.coverage" NAME="AppMod Coverage Results" MODIFIED="1720432739490" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$CodeCollector__1_.coverage" NAME="CodeCollector (1) Coverage Results" MODIFIED="1720457253292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/App" />

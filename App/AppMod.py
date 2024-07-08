@@ -7,7 +7,7 @@ from EditBookMod import EditBook
 class App(ctk.CTk):
     def __init__(self, books_instance):
         super().__init__()
-        self.configure(fg_color='green')
+        self.configure(fg_color='#0099ff')
         self.geometry("600x800")
         self.title("Whataread")
         self.grid_columnconfigure(0, weight=1)
@@ -22,6 +22,7 @@ class App(ctk.CTk):
         search_bar.pack(fill='both', expand=False, pady=5, padx=5)
         search_bar.columnconfigure(0, weight=0)
         search_bar.columnconfigure(1, weight=1)
+        search_bar.configure(fg_color='transparent')
 
         search_label = ctk.CTkLabel(search_bar, text="Wyszukaj: ")
         search_label.grid(column=0, row=0, sticky='e')
@@ -32,9 +33,11 @@ class App(ctk.CTk):
 
         self.book_list_frame = ctk.CTkFrame(self)
         self.book_list_frame.pack(fill='both', expand=True, pady=5, padx=5)
+        self.book_list_frame.configure(fg_color="#33ccff")
 
         self.button = ctk.CTkButton(self, text='Dodaj książkę', command=self.open_add_book_window)
         self.button.pack(fill='both', expand=False, pady=5, padx=5)
+        self.button.configure(fg_color='#006080')
 
         self.add_book = None
 
@@ -87,12 +90,16 @@ class App(ctk.CTk):
             book_frame.pack(fill='x', pady=5, padx=5)
             book_frame.columnconfigure(0, weight=1)
             book_frame.columnconfigure(1, weight=0)
+            book_frame.configure(fg_color='#b3ecff')
+
 
             info_frame = ctk.CTkFrame(book_frame)
             info_frame.grid(column=0, row=0, sticky='ew', padx=5)
+            info_frame.configure(fg_color="transparent")
 
             button_frame = ctk.CTkFrame(book_frame)
             button_frame.grid(column=1, row=0, sticky='ew', padx=5)
+            button_frame.configure(fg_color="transparent")
 
             book_title_label = ctk.CTkLabel(info_frame, text=f"Title: {book['title']}")
             book_title_label.pack(fill='x', expand=False)
@@ -104,16 +111,20 @@ class App(ctk.CTk):
             move_up_button = ctk.CTkButton(button_frame, width=5, height=5, text="↑", corner_radius=50,
                                            command=lambda idx=index: self.move_up_book(idx))
             move_up_button.grid(row=0, padx=5, pady=5)
+            move_up_button.configure(fg_color="#0086b3")
 
             edit_button = ctk.CTkButton(button_frame, width=5, height=5, text="Edytuj", corner_radius=15,
                                         command=lambda idx=index: self.edit_book_window(idx))
             edit_button.grid(row=1, padx=5, pady=5)
+            edit_button.configure(fg_color="#0086b3")
 
             delete_button = ctk.CTkButton(button_frame, width=5, height=5, text="Usuń", corner_radius=15,
                                           command=lambda idx=index: self.delete_book(idx))
             delete_button.grid(row=2, padx=5, pady=5)
+            delete_button.configure(fg_color="#0086b3")
 
             move_down_button = ctk.CTkButton(button_frame, width=5, height=5, text="↓", corner_radius=15,
                                              command=lambda idx=index: self.move_down_book(idx))
             move_down_button.grid(row=3, padx=5, pady=5)
+            move_down_button.configure(fg_color="#0086b3")
 
